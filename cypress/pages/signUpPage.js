@@ -31,12 +31,16 @@ class SignUpPage{
         cy.get(this.selectorsList().signUpForm)
     }
 
-     registerNewUser(firstName, lastName, username, password, confirmPassword){
-        firstName ? cy.get(this.selectorsList().fields.firstNameField).type(firstName): cy.get(this.selectorsList().fields.firstNameField).focus().blur()
-        lastName ? cy.get(this.selectorsList().fields.lastNameField).type(lastName): cy.get(this.selectorsList().fields.lastNameField).focus().blur()
-        username ? cy.get(this.selectorsList().fields.usernameField).type(username): cy.get(this.selectorsList().fields.usernameField).focus().blur()
-        password ? cy.get(this.selectorsList().fields.passwordField).type(password): cy.get(this.selectorsList().fields.passwordField).focus().blur()
-        confirmPassword ? cy.get(this.selectorsList().fields.confirmPasswordField).type(confirmPassword): cy.get(this.selectorsList().fields.confirmPasswordField).focus().blur()
+    focusBlurField(field){
+        cy.get(field).focus().blur()
+    }
+
+    registerNewUser(firstName, lastName, username, password, confirmPassword){
+        firstName ? cy.get(this.selectorsList().fields.firstNameField).type(firstName): focusBlurField(this.selectorsList().fields.firstNameField)
+        lastName ? cy.get(this.selectorsList().fields.lastNameField).type(lastName): focusBlurField(this.selectorsList().fields.lastNameField)
+        username ? cy.get(this.selectorsList().fields.usernameField).type(username): focusBlurField(this.selectorsList().fields.usernameField)
+        password ? cy.get(this.selectorsList().fields.passwordField).type(password): focusBlurField(this.selectorsList().fields.passwordField)
+        confirmPassword ? cy.get(this.selectorsList().fields.confirmPasswordField).type(confirmPassword): focusBlurField(this.selectorsList().fields.confirmPasswordField)
     }
 
 

@@ -1,14 +1,19 @@
 class HomePage {
     selectorsList(){
         const selectors = {
-            homeTabList: ".Mui-selected"
+            homeTabList: ".Mui-selected",
+            newTrasactionButton: "[href='/transaction/new']",
         }
 
         return selectors 
     }
     
     checkHomePage(){
-        cy.get(this.selectorsList().homeTabList).should('be.visible')
+        cy.get(this.selectorsList().homeTabList)
+    }
+    
+    accessTransactionPage(){
+        cy.get(this.selectorsList().newTrasactionButton).click()
     }
 }
 

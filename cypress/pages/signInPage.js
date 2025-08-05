@@ -1,3 +1,6 @@
+import HomePage from '../pages/homePage'
+const homePage = new HomePage()
+
 class SignInPage {
     selectorsList(){
         const selectors = {
@@ -25,10 +28,13 @@ class SignInPage {
         cy.get(this.selectorsList().signInForm)
     }
 
+    focusBlurField(field){
+        cy.get(field).focus().blur()
+    }
 
     fillLoginForm(username, password){
-        username ? cy.get(this.selectorsList().fields.usernameField).type(username) : cy.get(this.selectorsList().fields.usernameField).focus().blur()
-        password ? cy.get(this.selectorsList().fields.passwordField).type(password) : cy.get(this.selectorsList().fields.passwordField).focus().blur()
+        username ? cy.get(this.selectorsList().fields.usernameField).type(username) : this.focusBlurField(this.selectorsList().fields.usernameField)
+        password ? cy.get(this.selectorsList().fields.passwordField).type(password) : this.focusBlurField(this.selectorsList().fields.passwordField)
     }
 
     clickSignInButton(){
@@ -41,6 +47,18 @@ class SignInPage {
 
     checkRequireMsg(errorMsg){
         cy.get(this.selectorsList().requireMsg[errorMsg])
+    }
+
+    loginWithValidCredentials(username, password){
+        this.fillLoginForm(username, password)
+        this.clickSignInButton()
+        homePage.checkHomePage()
+    }
+
+    loginWithInvalidCredentials(username, password){
+        this.fillLoginForm(username, password)
+        this.clickSignInButton()
+        this.checkRequireMsg('failedLoginMessage')
     }
 }
 

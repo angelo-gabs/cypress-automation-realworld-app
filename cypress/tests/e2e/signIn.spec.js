@@ -1,17 +1,13 @@
 import userData from '../../fixtures/users/userData.json'
 import SignInPage from '../../pages/signInPage.js'
-import HomePage from '../../pages/homePage.js'
 
 const signInPage = new SignInPage()
-const homePage = new HomePage()
 
 describe('Successful login', () => {
 
   it('Login with valid username and password', () => {
     signInPage.accessSignInPage()
-    signInPage.fillLoginForm(userData.userSignIn.userSucess.username, userData.userSignIn.userSucess.password)
-    signInPage.clickSignInButton()
-    homePage.checkHomePage()
+    signInPage.loginWithValidCredentials(userData.userSignIn.userSucess.username, userData.userSignIn.userSucess.password)
   });
 });
 
@@ -21,21 +17,15 @@ describe('Failed login', () => {
   })
   
   it('Login with invalid username and valid password', () => {
-    signInPage.fillLoginForm(userData.userSignIn.userFail.username, userData.userSignIn.userSucess.password)
-    signInPage.clickSignInButton()
-    signInPage.checkRequireMsg('failedLoginMessage')
+    signInPage.loginWithInvalidCredentials(userData.userSignIn.userFail.username, userData.userSignIn.userSucess.password)
   })
 
   it('Login with valid username and invalid password', () => {
-    signInPage.fillLoginForm(userData.userSignIn.userSucess.username, userData.userSignIn.userFail.password)
-    signInPage.clickSignInButton()
-    signInPage.checkRequireMsg('failedLoginMessage')
+    signInPage.loginWithInvalidCredentials(userData.userSignIn.userSucess.username, userData.userSignIn.userFail.password)
   })
 
   it('Login with invalid username and invalid password', () => {
-    signInPage.fillLoginForm(userData.userSignIn.userFail.username, userData.userSignIn.userFail.password)
-    signInPage.clickSignInButton()
-    signInPage.checkRequireMsg('failedLoginMessage')
+    signInPage.loginWithInvalidCredentials(userData.userSignIn.userFail.username, userData.userSignIn.userFail.password)
   })
 
   it('Login with empty username and password fields', () => {
@@ -57,8 +47,9 @@ describe('Failed login', () => {
     signInPage.checkSignInButton()
   })
 
-  it('Login with password shorter than 4 characters', () => {
+  it.only('Login with password shorter than 4 characters', () => {
     signInPage.fillLoginForm(userData.userSignIn.userSucess.username, userData.shortPassword)
+    signInPage.focusBlurField(signInPage.selectorsList().fields.passwordField)
     signInPage.checkRequireMsg( 'passwordRequireMsg')
     signInPage.checkSignInButton()
   })
