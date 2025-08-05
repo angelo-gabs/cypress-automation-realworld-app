@@ -1,0 +1,29 @@
+
+{
+    "userSignIn":{
+
+        "userSucess" : {
+            "username": "Heath93",
+            "password": "s3cret"
+        },
+
+        "userFail" : {
+            "username": "usernameTest",
+            "password": "passwordTest"
+        }
+    },
+
+    "userSignUp":{
+
+        "firstName": "FirstNameTest",
+        "lastName": "LastNameTest" ,
+        "username": "usernameTest",
+        "password": "passwordTest",
+        "confirmPassword": "passwordTest"
+    },
+
+
+    "shortPassword":"123" 
+    
+
+}

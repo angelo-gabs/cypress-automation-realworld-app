@@ -74,6 +74,17 @@
       "balance": 49474,
       "createdAt": "2023-12-07T04:39:38.383Z",
       "modifiedAt": "2024-03-07T00:07:36.510Z"
+    },
+    {
+      "id": "5S__1Pj_K",
+      "uuid": "8b3764fb-2845-42a4-9f79-085cf26f4e58",
+      "firstName": "FirstNameTest",
+      "lastName": "LastNameTest",
+      "username": "usernameTest",
+      "password": "$2a$10$X47P4F4yNcm3seRjAlK7w.aI7FfDbxxAWI2hbkSSjW/ziz0pLYkwa",
+      "balance": 0,
+      "createdAt": "2025-08-05T12:43:32.026Z",
+      "modifiedAt": "2025-08-05T12:43:32.026Z"
     }
   ],
   "contacts": [
