@@ -1,4 +1,5 @@
 import userData from '../../fixtures/users/userData.json'
+import userTransactionData from '../../fixtures/users/userTransactionData.json'
 import SignInPage from '../../pages/signInPage.js'
 import HomePage from '../../pages/homePage.js'
 import TransactionPage from '../../pages/transactionPage.js'
@@ -13,5 +14,8 @@ describe('Enviar dinheiro com saldo suficiente', () => {
     signInPage.loginWithValidCredentials(userData.userSignIn.userSucess.username,userData.userSignIn.userSucess.password)
     homePage.accessTransactionPage()
     transactionPage.checkTransactionPage()
+    transactionPage.chooseTransactionContact('kristianBradtke')
+    transactionPage.fillTransactionFields(userTransactionData.transactionSuccess.amountToSend, userTransactionData.transactionSuccess.note)
+    transactionPage.clickPaymentButton()
   });
 });

@@ -14,7 +14,6 @@
     },
 
     "userSignUp":{
-
         "firstName": "FirstNameTest",
         "lastName": "LastNameTest" ,
         "username": "usernameTest",
