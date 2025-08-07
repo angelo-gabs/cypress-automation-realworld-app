@@ -102,7 +102,7 @@ describe('Failed Registration', () => {
         signUpPage.checkRequireMsg('passwordRequiredMsg')
     })
 
-    it.skip('Register a new user with an already registered "username"', () => {
+    it.skip('Register a new user with an already registered "username"', () => { // Falhou
         signUpPage.registerNewUser(
             userData.userSignUp.firstName, 
             userData.userSignUp.lastName, 

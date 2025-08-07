@@ -29,6 +29,7 @@ class TransactionPage{
         return selectors
     }
 
+
     checkTransactionPage(){
         cy.get(this.selectorsList().transactionGrid)
     }
@@ -52,6 +53,37 @@ class TransactionPage{
 
     clickPaymentButton(){
         cy.get(this.selectorsList().buttons.paymentButton).click()
+    }
+
+
+    
+    getNumericBalanceFromElement($element) {
+        const balanceText = $element[0].innerText
+        return Number(balanceText.replace('$', '').replace(/,/g, ''))
+    }
+
+    calculateExpectedBalance(initialBalance, amount) {
+        return initialBalance - amount
+    }
+
+    assertBalanceEquals(expectedBalance) {
+        cy.get(this.selectorsList().userBalance).should(($el) => {
+            const currentBalance = this.getNumericBalanceFromElement($el)
+            expect(currentBalance).to.eq(expectedBalance)
+        })
+    }
+
+
+    validateBalanceUpdate(transferAmount) {
+        cy.get(this.selectorsList().userBalance).then(($el) => {
+            const initialBalance = this.getNumericBalanceFromElement($el)
+            const expectedBalance = this.calculateExpectedBalance(initialBalance, transferAmount)
+
+            this.clickPaymentButton()
+
+            this.assertBalanceEquals(expectedBalance)
+
+        })
     }
     
 }

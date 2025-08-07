@@ -1,13 +1,13 @@
 {
     "transactionSuccess": {
-        "balance": 1000.00,
-        "amountToSend": 250.00,
+        "balance": "$1,509.53",
+        "amountToSend": 10,
         "note": "Pagamento de aluguel"
     },
 
     "transactionFail": {
-        "balance": 1000.00,
-        "amountToSend": 2500.00,
+        "balance": "$1,509.53",
+        "amountToSend": 2500,
         "note": "Tentativa de envio acima do saldo "
     }
   

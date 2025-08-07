@@ -16,6 +16,7 @@ describe('Enviar dinheiro com saldo suficiente', () => {
     transactionPage.checkTransactionPage()
     transactionPage.chooseTransactionContact('kristianBradtke')
     transactionPage.fillTransactionFields(userTransactionData.transactionSuccess.amountToSend, userTransactionData.transactionSuccess.note)
-    transactionPage.clickPaymentButton()
+    transactionPage.validateBalanceUpdate(userTransactionData.transactionSuccess.amountToSend) 
+
   });
 });

@@ -47,7 +47,7 @@ describe('Failed login', () => {
     signInPage.checkSignInButton()
   })
 
-  it.only('Login with password shorter than 4 characters', () => {
+  it('Login with password shorter than 4 characters', () => {
     signInPage.fillLoginForm(userData.userSignIn.userSucess.username, userData.shortPassword)
     signInPage.focusBlurField(signInPage.selectorsList().fields.passwordField)
     signInPage.checkRequireMsg( 'passwordRequireMsg')
