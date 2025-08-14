@@ -3,9 +3,12 @@ import SignUpPage from '../../pages/signUpPage'
 
 const signUpPage = new SignUpPage()
 
+beforeEach(() => {
+    signUpPage.acessSignUpPage()
+})
+
 describe('Sucessful Registration', () => {
     it('Register a new user with valid information', () => {
-        signUpPage.acessSignUpPage()
         signUpPage.registerNewUser(
             userData.userSignUp.firstName, 
             userData.userSignUp.lastName, 
@@ -19,10 +22,6 @@ describe('Sucessful Registration', () => {
 })
 
 describe('Failed Registration', () => {
-    beforeEach(() => {
-        signUpPage.acessSignUpPage()
-    })
-
     afterEach(() => {
         signUpPage.checkSignUpButton()
     })
@@ -100,16 +99,5 @@ describe('Failed Registration', () => {
             userData.userSignUp.confirmPassword
         )
         signUpPage.checkRequireMsg('passwordRequiredMsg')
-    })
-
-    it.skip('Register a new user with an already registered "username"', () => { // Falhou
-        signUpPage.registerNewUser(
-            userData.userSignUp.firstName, 
-            userData.userSignUp.lastName, 
-            userData.userSignIn.userSucess.username, 
-            userData.userSignUp.password,
-            userData.userSignUp.confirmPassword
-        )
-
     })
 })

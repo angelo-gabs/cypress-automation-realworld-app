@@ -1,65 +1,70 @@
-import HomePage from '../pages/homePage'
-const homePage = new HomePage()
-
 class SignInPage {
-    selectorsList(){
-        const selectors = {
-            fields : {
-                usernameField: "#username",
-                passwordField: "#password"
-            },
+  selectorsList() {
+    const selectors = {
+      fields: {
+        usernameField: "#username",
+        passwordField: "#password"
+      },
 
-            requireMsg :{
-                usernamRequiredMsg: "#username-helper-text",
-                passwordRequireMsg: "#password-helper-text",
-                failedLoginMessage: ".MuiAlert-message"
-            },
+      requireMsg: {
+        usernamRequiredMsg: "#username-helper-text",
+        passwordRequireMsg: "#password-helper-text",
+        failedLoginMessage: ".MuiAlert-message"
+      },
 
-            signInButton: ".SignInForm-submit",
-            signInForm: ".SignInForm-paper",
-            
-        }
+      buttons: {
+        signInButton: ".SignInForm-submit"
+      },
 
-        return selectors 
+      validations: {
+        signInForm: ".SignInForm-paper"
+      }
     }
 
-    accessSignInPage(){
-        cy.visit('http://localhost:3000/signin')
-        cy.get(this.selectorsList().signInForm)
-    }
+    return selectors
+  }
 
-    focusBlurField(field){
-        cy.get(field).focus().blur()
-    }
+  // ===== Page access =====
+  accessSignInPage() {
+    cy.visit('http://localhost:3000/signin')
+    cy.get(this.selectorsList().validations.signInForm)
+  }
 
-    fillLoginForm(username, password){
-        username ? cy.get(this.selectorsList().fields.usernameField).type(username) : this.focusBlurField(this.selectorsList().fields.usernameField)
-        password ? cy.get(this.selectorsList().fields.passwordField).type(password) : this.focusBlurField(this.selectorsList().fields.passwordField)
-    }
+  // ===== Field interactions =====
+  focusBlurField(field) {
+    cy.get(field).focus().blur()
+  }
 
-    clickSignInButton(){
-        cy.get(this.selectorsList().signInButton).click()
-    }
+  fillLoginForm(username, password) {
+    username
+      ? cy.get(this.selectorsList().fields.usernameField).type(username)
+      : this.focusBlurField(this.selectorsList().fields.usernameField)
 
-    checkSignInButton(){
-        cy.get(this.selectorsList().signInButton).should('be.disabled')
-    }
+    password
+      ? cy.get(this.selectorsList().fields.passwordField).type(password)
+      : this.focusBlurField(this.selectorsList().fields.passwordField)
+  }
 
-    checkRequireMsg(errorMsg){
-        cy.get(this.selectorsList().requireMsg[errorMsg])
-    }
+  // ===== Button actions =====
+  clickSignInButton() {
+    cy.get(this.selectorsList().buttons.signInButton).click()
+  }
 
-    loginWithValidCredentials(username, password){
-        this.fillLoginForm(username, password)
-        this.clickSignInButton()
-        homePage.checkHomePage()
-    }
+  // ===== Validations =====
+  checkSignInButton() {
+    cy.get(this.selectorsList().buttons.signInButton).should('be.disabled')
+  }
 
-    loginWithInvalidCredentials(username, password){
-        this.fillLoginForm(username, password)
-        this.clickSignInButton()
-        this.checkRequireMsg('failedLoginMessage')
-    }
+  checkRequireMsg(errorMsg) {
+    cy.get(this.selectorsList().requireMsg[errorMsg])
+  }
+
+  // ===== Flow =====
+  logingIn(username, password) {
+    this.accessSignInPage()
+    this.fillLoginForm(username, password)
+    this.clickSignInButton()
+  }
 }
 
 export default SignInPage
