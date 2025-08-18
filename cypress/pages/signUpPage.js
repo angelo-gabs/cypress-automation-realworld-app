@@ -18,7 +18,7 @@ class SignUpPage {
       },
 
       buttons: {
-        signUpButton: ".SignUpForm-submit"
+        signUpButton: ".SignUpForm-submit",
       },
 
       validations: {
@@ -79,6 +79,15 @@ class SignUpPage {
   checkUrl(url) {
     cy.url().should('eq', `${url}`)
   }
+
+  // ===== Flow =====
+  completeRegistration(firstName,lastName,username, password, confirmPassword){
+    this.acessSignUpPage()
+    this.registerNewUser(firstName,lastName,username,password,confirmPassword)
+    this.clickSignUpButton()
+    //this.checkUrl('http://localhost:3000/signin')
+  }
+
 }
 
 export default SignUpPage
