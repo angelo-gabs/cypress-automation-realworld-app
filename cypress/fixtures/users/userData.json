@@ -8,7 +8,7 @@
         },
 
         "userFail" : {
-            "username": "usernameTest",
+            "username": "usernameTests",
             "password": "passwordTest"
         }
     },

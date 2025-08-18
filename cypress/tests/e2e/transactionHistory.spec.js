@@ -4,14 +4,13 @@ import SignUpPage from '../../pages/signUpPage.js'
 import HomePage from '../../pages/homePage.js'
 import TransactionHistoryPage from '../../pages/transactionHistoryPage.js'
 
-
 const signInPage = new SignInPage()
 const signUpPage = new SignUpPage()
 const homePage = new HomePage()
 const transactionHistoryPage = new TransactionHistoryPage()
 
-describe.skip('Visualizar histórico de transações com sucesso', () => {
-  it('Deve exibir o histórico de transações de um usuário corretamente', () => {
+describe('View transaction history', () => {
+  it('Displays user transaction history', () => {
     signInPage.logingIn(userData.userSignIn.userSucess.username, userData.userSignIn.userSucess.password)
     homePage.checkHomePage()
     transactionHistoryPage.accessHistoryTab()
@@ -19,20 +18,19 @@ describe.skip('Visualizar histórico de transações com sucesso', () => {
   });
 });
 
-describe('Tentar visualizar o histórico de transações sem transações anteriores', () => {
-  it('Deve exibir uma mensagem indicando que o usuário não possui transações anteriores', () => {
+describe('View transaction history with no previous transactions', () => {
+  it('Displays empty user transaction history', () => {
     signUpPage.completeRegistration(
       userData.userSignUp.firstName, 
       userData.userSignUp.lastName, 
-      userData.userSignUp.username, // gerar um aleatório
+      userData.userSignUp.username,
       userData.userSignUp.password,
       userData.userSignUp.confirmPassword
-    )
+    ) // Para esse caso foi necessário cadastrar um novo usuário, pois todos usuários já cadastrados possuem um histórico de transações
     signInPage.logingIn(userData.userSignUp.username, userData.userSignUp.password)
     homePage.checkHomePage()
-    homePage.checkOnboardingExists('Tests', '123456234', '122213214') // arrumar aqui
+    homePage.checkOnboardingExists('Tests', '123456234', '122213214')
     transactionHistoryPage.accessHistoryTab()
     transactionHistoryPage.checkEmptyHistory()
   });
 });
-
