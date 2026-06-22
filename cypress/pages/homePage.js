@@ -26,7 +26,7 @@ class HomePage {
     return selectors;
   }
 
-  // ===== Page access =====
+  // Validação da página
   checkHomePage() {
     cy.get(this.selectorsList().tabs.homeTab);
   }
@@ -35,7 +35,7 @@ class HomePage {
     cy.get(this.selectorsList().buttons.newTransactionButton).click();
   }
 
-  // ===== Field interactions =====
+  // Interação com campos
   focusBlurField(field) {
     cy.get(field).focus().blur();
   }
@@ -54,7 +54,7 @@ class HomePage {
       : this.focusBlurField(this.selectorsList().fields.accountNumberField);
   }
 
-  // ===== Buttons =====
+  // Clique em botões
   clickOnboardingNextButton() {
     cy.get(this.selectorsList().buttons.nextOnboardingButton).click({ force: true });
   }
@@ -67,12 +67,11 @@ class HomePage {
     cy.get(this.selectorsList().buttons.saveBankAccountInfoButton).click();
   }
 
-  // ===== Validations =====
+  // Validações
   checkOnboardingBankInfo() {
     cy.get(this.selectorsList().validations.onboardingBankInfo).should("be.visible");
   }
 
-  // ===== Flow =====
   checkOnboardingExists(bankName, routingNumber, accountNumber) {
     this.checkOnboardingBankInfo();
     this.clickOnboardingNextButton();
