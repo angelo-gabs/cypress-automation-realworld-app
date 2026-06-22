@@ -7,8 +7,8 @@ beforeEach(() => {
     signUpPage.acessSignUpPage()
 })
 
-describe('Sucessful Registration', () => {
-    it('Register a new user with valid information', () => {
+describe('Cadastro de usuário - Credenciais válidas', () => {
+    it('Cadastrar usuário com credenciais validas', () => {
         signUpPage.registerNewUser(
             userData.userSignUp.firstName, 
             userData.userSignUp.lastName, 
@@ -21,13 +21,13 @@ describe('Sucessful Registration', () => {
     })
 })
 
-describe('Failed Registration', () => {
+describe('Cadastro de usuário - Credenciais inválidas', () => {
     afterEach(() => {
         signUpPage.checkSignUpButton()
     })
 
 
-    it('Register a new user with all fields empty', () => {
+    it('Cadastrar usuário com todos os campos em branco', () => {
         signUpPage.registerNewUser()
         const requireMsgs = signUpPage.selectorsList().requireMsg
         for(let erroMsg in requireMsgs){
@@ -35,7 +35,7 @@ describe('Failed Registration', () => {
         }
     })
 
-    it('Register a new user with the "first name" field empty', () => {
+    it('Cadastrar usuário com campo de "first name" em branco', () => {
         signUpPage.registerNewUser(
             '',
             userData.userSignUp.lastName, 
@@ -46,7 +46,7 @@ describe('Failed Registration', () => {
         signUpPage.checkRequireMsg('firstNameRequiredMsg')
     })
 
-    it('Register a new user with the "last name" field empty', () => {
+    it('Cadastrar usuário com campo de "last name" em branco', () => {
         signUpPage.registerNewUser(
             userData.userSignUp.firstName,
             '', 
@@ -57,7 +57,7 @@ describe('Failed Registration', () => {
         signUpPage.checkRequireMsg('lastNameRequiredMsg')
     })
 
-    it('Register a new user with the "username" field empty', () => {
+    it('Cadastrar usuário com campo de "username" em branco', () => {
         signUpPage.registerNewUser(
             userData.userSignUp.firstName, 
             userData.userSignUp.lastName, 
@@ -68,7 +68,7 @@ describe('Failed Registration', () => {
         signUpPage.checkRequireMsg('usernameRequiredMsg')
     })
 
-    it('Register a new user with the "password" field empty', () => {
+    it('Cadastrar usuário com campo de "password" em branco', () => {
         signUpPage.registerNewUser(
             userData.userSignUp.firstName, 
             userData.userSignUp.lastName, 
@@ -79,7 +79,7 @@ describe('Failed Registration', () => {
         signUpPage.checkRequireMsg('passwordRequiredMsg')
     })
 
-    it('Register a new user with the "confirm password" field empty', () => {
+    it('Cadastrar usuário com campo de "confirm password" em branco', () => {
         signUpPage.registerNewUser(
             userData.userSignUp.firstName, 
             userData.userSignUp.lastName, 
@@ -90,7 +90,7 @@ describe('Failed Registration', () => {
         signUpPage.checkRequireMsg('confirmPaswordRequireMsg')
     })
 
-    it('Register a new user with a password containing less than 4 characters', () => {
+    it('Cadastrar usuário com senha contendo menos de 4 caracteres', () => {
         signUpPage.registerNewUser(
             userData.userSignUp.firstName, 
             userData.userSignUp.lastName, 
