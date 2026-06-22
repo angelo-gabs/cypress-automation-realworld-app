@@ -9,8 +9,8 @@ const signUpPage = new SignUpPage()
 const homePage = new HomePage()
 const transactionHistoryPage = new TransactionHistoryPage()
 
-describe('View transaction history', () => {
-  it('Displays user transaction history', () => {
+describe('Histórico de transações - Usuário com transações anteriores', () => {
+  it('Exibir histórico de transações do usuário', () => {
     signInPage.logingIn(userData.userSignIn.userSucess.username, userData.userSignIn.userSucess.password)
     homePage.checkHomePage()
     transactionHistoryPage.accessHistoryTab()
@@ -18,8 +18,8 @@ describe('View transaction history', () => {
   });
 });
 
-describe('View transaction history with no previous transactions', () => {
-  it('Displays empty user transaction history', () => {
+describe('Histórico de transações - Usuário sem transações anteriores', () => {
+  it('Exibir histórico vazio para novo usuário', () => {
     signUpPage.completeRegistration(
       userData.userSignUp.firstName, 
       userData.userSignUp.lastName, 
