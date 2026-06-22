@@ -7,7 +7,7 @@ beforeEach(() => {
     signUpPage.acessSignUpPage()
 })
 
-describe('Cadastro de usuário - Credenciais válidas', () => {
+describe('Cadastro de usuário - Credenciais válidas',  () => {
     it('Cadastrar usuário com credenciais validas', () => {
         signUpPage.registerNewUser(
             userData.userSignUp.firstName, 
