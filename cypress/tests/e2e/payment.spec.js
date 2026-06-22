@@ -15,8 +15,8 @@ beforeEach(() => {
   transactionPage.checkTransactionPage()
 })
 
-describe('Send money with sufficient balance', () => {
-  it('Should successfully send money', () => {
+describe('Transação - Envio de dinheiro com saldo suficiente', () => {
+  it('Enviar dinheiro com sucesso para um contato válido', () => {
     transactionPage.chooseTransactionContact('kristianBradtke')
     transactionPage.fillTransactionFields(
       userTransactionData.transactionSuccess.amountToSend,
@@ -26,8 +26,8 @@ describe('Send money with sufficient balance', () => {
   })
 })
 
-describe('Send money with insufficient balance', () => {
-  it.skip('Should display an error message when sending money with insufficient balance', () => {
+describe('Transação - Envio de dinheiro com saldo insuficiente', () => {
+  it('Tentar enviar dinheiro com valor maior que o saldo disponível', () => {
     transactionPage.chooseTransactionContact('darrelOrtiz')
     transactionPage.fillTransactionFields(
       userTransactionData.transactionFail.amountToSend,
@@ -38,25 +38,25 @@ describe('Send money with insufficient balance', () => {
   })
 })
 
-describe('Make transaction with empty fields', () => {
+describe('Transação - Validação de campos obrigatórios vazios', () => {
   afterEach(() => {
     transactionPage.checkPaymentButton()
   })
 
-  it('Transaction with all fields empty', () => {
+  it('Realizar transação com todos os campos vazios', () => {
     transactionPage.chooseTransactionContact('ruthieProsacco')
     transactionPage.fillTransactionFields('', '')
     transactionPage.checkRequireMsg('amountRequireMsg')
     transactionPage.checkRequireMsg('addNoteRequireMsg')
   })
 
-  it('Transaction with empty amount field', () => {
+  it('Realizar transação com campo de valor vazio', () => {
     transactionPage.chooseTransactionContact('ruthieProsacco')
     transactionPage.fillTransactionFields('', userTransactionData.transactionFail.note)
     transactionPage.checkRequireMsg('amountRequireMsg')
   })
 
-  it('Transaction with empty add note field', () => {
+  it('Realizar transação com campo de nota vazio', () => {
     transactionPage.chooseTransactionContact('ruthieProsacco')
     transactionPage.fillTransactionFields(userTransactionData.transactionFail.amountToSend, '')
     transactionPage.checkRequireMsg('addNoteRequireMsg')
