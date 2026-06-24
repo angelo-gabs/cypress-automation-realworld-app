@@ -1,4 +1,4 @@
-# Cypress Automation - Real World App 
+# Automação de testes - Real World App 
 
 ## Sobre o Projeto
 
